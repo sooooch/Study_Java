@@ -6,7 +6,7 @@ package com.itwill.method02;
  * - 수식어 생략 가능.
  * - 아규먼트를 갖지 않는 메서드는 파라미터를 선언하지 않음.
  * - 메서드의 반환값이 없는 경우에는 리턴타입으로 void를 사용.
- * - 메서드는 클래스 안에서 작성(선언).
+ * - 메서드는 클래스 안에서만 작성(선언).
  * - 다른 메서드 안에서 메서드를 선언할 수 없음!
  */
 
@@ -17,12 +17,16 @@ public class MethodMain02 {
         
         double result = add(1.0, 2.0); // add 메서드 호출
         System.out.println("add = " + result);
-        result = subtract(3.0, 1.0);
+        
+        result = subtract(1, 5);
         System.out.println("subtrack = " + result);
-        result = multiply(5.0, 2.0);
-        System.out.println("multiply = " + result);
-        result = divide(10.0, 2.0);
+        
+        
+        System.out.println("multiply = " + multiply(5.0, 2.0));
+        
+        result = (int) divide(12, 3);
         System.out.println("divide = " + result);
+        
         // TODO: subtract, multiply, divide 메서드를 호출하고, 그 결과를 출력.
         
     } // end main
