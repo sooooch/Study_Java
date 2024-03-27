@@ -15,9 +15,9 @@ public class ClassMain05 {
 		System.out.println("과학 = " + subject1.science);
 		System.out.println("총점 = " + subject1.total());
 		System.out.println("평균 = " + subject1.avg());
-		
-		System.out.println("=============================");
-		
+
+		System.out.println("111111111111111111111111");
+
 		Random rand = new Random();
 
 		int x = rand.nextInt(101);
@@ -26,11 +26,21 @@ public class ClassMain05 {
 		int x4 = rand.nextInt(101);
 		Subject subject2 = new Subject(x, x1, x3, x4);
 
-		Student student = new Student(123, "수창", subject2);
+		Student student1 = new Student(123, "수창", subject2);
 
-		student.info();
+		student1.info();
+		System.out.println("2222222222222222222222");
 		subject2.info();
 
+		System.out.println("33333333333333333333333");
+		// 기본 생성자를 사용해서 Student 타입의 객체를 생성
+		Student student2 = new Student();
+		student2.info();
+
+		System.out.println("44444444444444444444444");
+		// Student 생성자 (3)을 사용해서 객체 생성
+		Student student3 = new Student(10,"오쌤",10,20,30,25);
+		student3.info();
 	}
 
 }

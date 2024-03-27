@@ -20,13 +20,25 @@ public class Student {
     	this.subject = subject;
     }
     
+    // 생성자(3)
+    public Student(int id, String name, int korean, int english, int math, int science) {
+    	this.id = id;
+    	this.name = name;
+    	this.subject = new Subject(korean, english, math, science);
+    }
+    
     public void info() {
     	System.out.println("번호 : " + id);
     	System.out.println("이름 : " + name);
+    	if (subject != null) {
+    		subject.info();
+    	System.out.println("==================================");
     	System.out.println("국어 : " + subject.korean + "영어 : " + subject.english + "수학 : " + subject.math + "과학 : " + subject.science );
     	System.out.println("총점 : " + subject.total());
     	System.out.println("평균 : " + subject.avg());
-    	
+    	} else {
+    		System.out.println("Subject: null");
+    	}
     }
     
 }
