@@ -31,10 +31,10 @@ public class ModifierMain03 {
 		Person person = new Person("박수창",22);
 			
 		System.out.println("이름: " + person.getName());
-		System.out.println("나이: " + person.getage());
+		System.out.println("나이: " + person.getAge());
 		
-		person.setage(31);
-		System.out.println("찐나이: " + person.getage());
+		person.setAge(31);
+		System.out.println("찐나이: " + person.getAge());
 		
 
 	}

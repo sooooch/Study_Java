@@ -14,11 +14,11 @@ public class Person {
 		return this.name;
 	}
 
-	public int getage() {
+	public int getAge() {
 		return this.age;
 	}
 
-	public void setage(int age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 }
