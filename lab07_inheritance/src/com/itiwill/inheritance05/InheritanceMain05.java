@@ -12,7 +12,7 @@ import java.util.Scanner;
  * (예) toString, equals(), hashCode(); ...
  * - toString(): 객체의 문자열 표현식을 리턴.
  * - '패키지.클래스@주소" 형식의 문자열을 만들어서 리턴.		
- * - equals(): 객체 동등 비교 메서드
+ * - equals(): 객체 동등 비교 메서드 ( hashcode도 같이 오버라이드 해야함)
  *  힙(heap)에 생성된 객체가 같으면(객체의 주소가 같으면) true, 다르면 false를 리턴
  *  - hashCode(): 객체의 해시코드(정수) 값을 리턴.
  *   객체의 주소값으로 해시코드를 만듦
@@ -42,6 +42,7 @@ public class InheritanceMain05 {
 		
 		T t1 = new T();
 		T t2 = new T ();
+		
 		T t3 = t1;
 		System.out.println(t1.equals(t2));
 		System.out.println(t1.equals(t3));
