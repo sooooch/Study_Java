@@ -52,23 +52,24 @@ public class MemberMain {
 
 		System.out.print("업데이트 인덱스 >> ");
 		int index = Integer.parseInt(scanner.nextLine());
-		Member member = dao.read(index);
 		
-		if(member == null) {
+		Member member = dao.read(index);
+
+		if (member == null) {
 			System.out.println("해당 인덱스가 없습니다");
 		} else {
-		System.out.println("수정 전 : " + member);
+			System.out.println("수정 전 : " + member);
 
-		System.out.print("새 비밀번호 : ");
-		String password = scanner.nextLine();
+			System.out.print("새 비밀번호 : ");
+			String password = scanner.nextLine();
 
-		// Veiw 에서 Controller의 기능을 사용해서 비밀번호를 업데이트
-		int result = dao.update(index, password);
-		if (result == 1) {
-			System.out.println("비밀번호 업데이트 성공");
-		} else {
-			System.out.println("비밀번호 업데이트 실패");
-		}
+			// Veiw 에서 Controller의 기능을 사용해서 비밀번호를 업데이트
+			int result = dao.update(index, password);
+			if (result == 1) {
+				System.out.println("비밀번호 업데이트 성공");
+			} else {
+				System.out.println("비밀번호 업데이트 실패");
+			}
 		}
 	}
 
@@ -82,31 +83,32 @@ public class MemberMain {
 		if (member != null) {
 			System.out.println(member);
 		} else {
-			System.out.println("");
+			System.out.println("음슴");
 		}
 	}
 
 	private void readAllMember() {
-		System.out.println("\n --- 회원 목록 ---");
-		Member[] members = dao.read();
-
+		System.out.println("\n--- 회원 목록 ---");
+		Member[] members = dao.read(); // View에서 Controller 기능을 사용, 출력할 데이터를 가져옴.
+		int index = 0;
 		for (Member m : members) {
-			if (m != null) {
-				System.out.println(m);
-			} else {
-				System.out.println("");
-			}
-
+			System.out.println("[" + index + "] " + m);
+			index++;
 		}
 	}
 
 	private void saveNewMember() {
 
 		System.out.println("\n----- 새 회원 정보 저장 -----");
-		int a = MemberDaoImpl.MAX_LANGTH;
+
 		Member[] members = dao.read();
-		//if (members <  a) {
-		
+		MemberDaoImpl daoImpl = (MemberDaoImpl) dao;   // 캐스팅을 하여 하위타입의 클래스를 사용
+
+		if (daoImpl.isMemoryFull()) {
+			System.out.println("저장 가능한 회원목록을 초과했습니다");
+			return;
+		}
+
 		System.out.print("아이디를 입력하세요 : ");
 		String id = scanner.nextLine();
 
@@ -117,11 +119,10 @@ public class MemberMain {
 		int result = dao.create(member);
 		if (result == 1) {
 			System.out.println("회원 정보 저장 성공");
-		} else if (result == MemberDaoImpl.MAX_LANGTH + 1) {
+		} else {
 			System.out.println("회원 정보 저장 실패");
 			System.out.println("다시 하슈");
 		}
-
 	}
 
 	int selectMainMenu() {
