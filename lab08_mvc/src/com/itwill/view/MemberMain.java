@@ -101,7 +101,7 @@ public class MemberMain {
 
 		System.out.println("\n----- 새 회원 정보 저장 -----");
 
-		Member[] members = dao.read();
+		//Member[] members = dao.read();
 		MemberDaoImpl daoImpl = (MemberDaoImpl) dao;   // 캐스팅을 하여 하위타입의 클래스를 사용
 
 		if (daoImpl.isMemoryFull()) {
