@@ -1,7 +1,7 @@
 package com.itwill.ver01;
 
 // 연락처 데이터를 표현하는 클래스.
-// 아키텍쳐 모델
+//  모델
 public class Contact {
 	// 필드
 	private String name;

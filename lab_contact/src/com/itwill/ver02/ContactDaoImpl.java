@@ -2,6 +2,7 @@ package com.itwill.ver02;
 
 import com.itwill.ver01.Contact;
 
+//컨트롤러
 public class ContactDaoImpl implements ContactDao {
 
 	private final int MAX_LENGTH = 3;
@@ -24,20 +25,21 @@ public class ContactDaoImpl implements ContactDao {
 
 	int count = 0;
 
-	//
+	public boolean isMemoryFull() {
+		return (count == MAX_LENGTH);
+	}
 
 	@Override
 	public int create(Contact contact) {
 
-		if (count < MAX_LENGTH) {
-			contacts[count] = contact;
-			count++;
-			return 1;
-		} else {
-
+		if (isMemoryFull()) {
 			return 0;
 		}
 
+		contacts[count] = contact;
+		count++;
+
+		return 1;
 	}
 
 	@Override
@@ -63,8 +65,10 @@ public class ContactDaoImpl implements ContactDao {
 
 	@Override
 	public int update(int index, Contact contact) {
-		if (0 <= index && index < count) {
-			
+		if (0 <= index && index < count && contact != null) {
+
+			// contacts[index].setName(contact.getName());
+
 			contacts[index] = contact;
 			return 1;
 

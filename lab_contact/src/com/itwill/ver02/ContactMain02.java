@@ -10,11 +10,14 @@ public class ContactMain02 {
 	private Scanner scanner = new Scanner(System.in);
 	private Contact[] contacts = new Contact[MAX_LENGTH];
 	private int count = 0;
+	private ContactDao dao = ContactDaoImpl.getInstance();
+	
 	// MVC 아키텍쳐에서 View 역할
 	public static void main(String[] args) {
+		ContactDao dao = ContactDaoImpl.getInstance();
 		System.out.println("*** 연락처 프로그램 v0.2 ***");
 		ContactMain02 app = new ContactMain02();
-
+		
 		boolean run = true; // 프로그램 계속 실행(return=true) 또는 종료(run=false) 여부를 저장하기 위한 변수.
 		while (run) {
 			int menu = app.showMainMenu();
@@ -91,11 +94,11 @@ public class ContactMain02 {
 	}
 
 	private void saveNewContact() {
-
-		if (count >= MAX_LENGTH) {
+		
+		if (((ContactDaoImpl)dao).isMemoryFull()) {
 			System.out.println("저장 가능한 연락처를 초과 했습니다");
-//				return;   메서드 종료 - > 사용하면 else 없이 할 수 있음 if count == MAX_LENGTH 해야함
-		} else {
+			return;          // 메서드 종료 - > 사용하면 else 없이 할 수 있음 if count == MAX_LENGTH 해야함
+		}
 			System.out.println("\n--- 새 연락처 저장 ---");
 			System.out.print("이름 입력 : ");
 			String name = scanner.nextLine();
@@ -107,22 +110,44 @@ public class ContactMain02 {
 			String email = scanner.nextLine();
 
 			Contact contact = new Contact(name, phone, email);
-
+			  int result = dao.create(contact);
+		        if (result == 1) {
+		            System.out.println(">>> 연락처 저장 성공");
+		        } else {
+		            System.out.println(">>> 연락처 저장 실패");
+		        }
 			// Contact 타입 객체를 연락처 배열 인덱스 count에 저장
 			contacts[count] = contact;
 			// 배열에 저장 후에는 연락처 저장 개수(인덱스)를 증가
 			count++;
 
 		}
-	}
+	
 
 	private int showMainMenu() {
 		System.out.println("\n--------------------------------------------");
 		System.out.println("[0]종료 [1]저장 [2]목록 [3]인덱스검색 [4]수정");
 		System.out.println("\n--------------------------------------------");
 		System.out.print("선택 : ");
-		int menu = Integer.parseInt(scanner.nextLine());
+		
+		int menu = inputInteger();
 		return menu;
 
+	}
+	private int inputInteger() {
+		
+		 int result = 0;
+	        
+	        while(true) {
+	            try {
+	                result = Integer.parseInt(scanner.nextLine());
+	                break;
+	            } catch (NumberFormatException e) {
+	                System.out.println("입력값은 정수여야 합니다.");
+	                System.out.print("정수 입력>> ");
+	            }
+	        }
+	        
+	        return result;
 	}
 }
