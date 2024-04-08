@@ -16,6 +16,7 @@ public class ListMain04 {
 				String a = x.toUpperCase();
 
 				fiveNames.add(a);
+				                                  // fivaNames.add(x.toUpperCase());
 			}
 		}
 		System.out.println(fiveNames);
@@ -26,8 +27,9 @@ public class ListMain04 {
 //        // -> [4, 3, 4, 3, 10, 7, 3, 6]
 		ArrayList<Integer> numberCharacters = new ArrayList<>();
 		for (String a : names) {
-			int x = a.length();
-			numberCharacters.add(x);
+			int x = a.length();                                   				
+
+			numberCharacters.add(x);            
 		}
 		System.out.println(numberCharacters);
 
@@ -36,7 +38,7 @@ public class ListMain04 {
 		// 3. codes의 원소가 0이면 "남성", 1이면 "여성"을 저장하는 ArrayList를 만들고 출력.
 		ArrayList<String> menOrWomen = new ArrayList<String>();
 		for (Integer i : codes) {
-			if (i == 0) {
+			if (i == 0) {                                  //menOrWomen.add((i == 0) ? "남성" : "여성");
 
 				menOrWomen.add("남성");
 

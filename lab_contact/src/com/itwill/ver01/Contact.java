@@ -27,7 +27,7 @@ public class Contact {
 		this.name = name;
 	}
 
-	public String getPhon() {
+	public String getPhone() {
 		return this.phone;
 
 	}
