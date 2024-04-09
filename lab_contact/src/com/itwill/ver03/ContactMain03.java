@@ -8,10 +8,10 @@ import com.itwill.ver01.Contact;
 public class ContactMain03 {
 
 	private final Scanner scanner = new Scanner(System.in);
-	private ContactDao dao = ContactDaoImpl.getInstance();
+	private ContactDao dao = ContactDaoImpl.getInstance(); // 다형성
 
 	public static void main(String[] args) {
-		System.out.println("*** 연락처 프로그램 v0.2 ***");
+		System.out.println("*** 연락처 프로그램 v0.3 ***");
 
 		ContactMain03 app = new ContactMain03();
 
@@ -35,7 +35,7 @@ public class ContactMain03 {
 				app.updateContactByIndex();
 				break;
 			case 5:
-				app.deleteContactByContacts();
+				app.deleteContactByIndex();
 			default:
 				System.out.println("메뉴 번호(0 ~ 5)를 확인하세요.");
 			}
@@ -44,19 +44,17 @@ public class ContactMain03 {
 		System.out.println("*** 프로그램 종료 ***");
 	}
 
-	private void deleteContactByContacts() {
+	private void deleteContactByIndex() {
 		System.out.println("\n--- 삭제 인덱스 검색 ---");
 		System.out.print("인덱스 입력>> ");
 		int index = inputInteger();
-		
-		
-		
+
 		int result = dao.delete(index);
 		if (result == 1) {
 			System.out.println(">>> 연락처  삭제 성공");
 		} else {
 			System.out.println(">>> 연락처 삭제 실패");
-			deleteContactByContacts();
+			deleteContactByIndex();
 		}
 	}
 
@@ -119,10 +117,10 @@ public class ContactMain03 {
 		List<Contact> contacts = dao.read();
 		int index = 0;
 		for (Contact c : contacts) {
-			if (c != null) {
-				System.out.println("[" + index + "] " + c);
-				index++;
-			}
+
+			System.out.println("[" + index + "] " + c);
+			index++;
+
 		}
 	}
 
