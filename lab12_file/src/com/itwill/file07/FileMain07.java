@@ -47,7 +47,7 @@ public class FileMain07 {
 		reader.close();
 		
 		
-		// Java 11 버전부터 FileReaderm FileWriter 클래스에서 인코딩을 설정할 수 있는
+		// Java 11 버전부터 FileReader, FileWriter 클래스에서 인코딩을 설정할 수 있는
 		// 생성자를 제공하기 시작
 		// 1. FileReader 객체를 생성할 때 인코딩 방식을 설정
 		FileReader fr = new FileReader(utf8File, Charset.forName("UTF-8"));   //"UTF-8"
