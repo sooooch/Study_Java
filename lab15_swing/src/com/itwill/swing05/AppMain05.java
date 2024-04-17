@@ -10,6 +10,9 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
+
 
 public class AppMain05 {
 
@@ -22,6 +25,7 @@ public class AppMain05 {
 	private JLabel lblNewLabel_email;
 	private JButton btnNewButton;
 	private JTextArea textArea;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -71,21 +75,53 @@ public class AppMain05 {
 		textField_name.setBounds(234, 67, 299, 37);
 		frame.getContentPane().add(textField_name);
 		textField_name.setColumns(10);
+		textField_name.addKeyListener(new KeyAdapter() {
+	        @Override
+	        public void keyPressed(KeyEvent e) {
+	            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+	                textField_number.requestFocus();
+	            }
+	        }
+	    });
 
 		textField_number = new JTextField();
 		textField_number.setColumns(10);
 		textField_number.setBounds(234, 114, 299, 37);
 		frame.getContentPane().add(textField_number);
+		 textField_number.addKeyListener(new KeyAdapter() {
+		        @Override
+		        public void keyPressed(KeyEvent e) {
+		            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+		                textField_email.requestFocus();
+		            }
+		        }
+		    });
 
 		textField_email = new JTextField();
 		textField_email.setColumns(10);
 		textField_email.setBounds(234, 171, 299, 37);
 		frame.getContentPane().add(textField_email);
+		textField_email.addKeyListener(new KeyAdapter() {
+	        @Override
+	        public void keyPressed(KeyEvent e) {
+	            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+	                nameNumMail();
+	                
+	              
+	            }
+	        }
+	    });
+		
 
 		btnNewButton = new JButton("입력");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				nameNumMail();
+				textField_name.setText("");           // 필드값 초기화
+	            textField_number.setText("");
+	            textField_email.setText("");
+	          
+                textField_name.requestFocus(); // 첫 번째 텍스트 필드로 포커스 이동
 
 			}
 		});
@@ -94,12 +130,20 @@ public class AppMain05 {
 		frame.getContentPane().add(btnNewButton);
 
 		textArea = new JTextArea();
-		JScrollPane scrollPane = new JScrollPane(textArea);
+		scrollPane = new JScrollPane(textArea);
 		scrollPane.setBounds(92, 288, 592, 206);
 		frame.getContentPane().add(scrollPane);
 	}
 
 	private void nameNumMail() {
+//		String name = textField_name.getText();
+//		String number = textField_name.getText();
+//		String email = textField_name.getText();
+//		String msg = String.format("이름: %s, 전화번호: %s, 이메일: %s\n,name, number, email");
+//		textArea.setText(msg);
+		
+		
+		
 		textArea.append("이름: " + textField_name.getText() + "\n");
 		textArea.append("번호: " + textField_number.getText() + "\n");
 		textArea.append("메일: " + textField_email.getText() + "\n");
