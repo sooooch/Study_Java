@@ -4,12 +4,15 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import com.itwill.swing07.MyFrame.Notifiable;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AppMain07 {
+public class AppMain07 implements Notifiable {
 
 	private JFrame frame;
 	private JButton btnMsgDlg;
@@ -117,12 +120,18 @@ public class AppMain07 {
 		btnMyFrame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// JFrame을 상속받는 객체 보여주기
-				MyFrame.showMyFrame();
+				MyFrame.showMyFrame(frame, AppMain07.this);
 			}
 		});
 		btnMyFrame.setFont(new Font("굴림", Font.ITALIC, 20));
 		btnMyFrame.setBounds(12, 350, 348, 73);
 		frame.getContentPane().add(btnMyFrame);
+	}
+	
+	@Override
+	public void notifyMessage(String msg) {
+		btnMyFrame.setText(msg);
+		
 	}
 
 }
